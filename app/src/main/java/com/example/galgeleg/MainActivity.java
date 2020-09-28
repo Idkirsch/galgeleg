@@ -25,13 +25,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         name = findViewById(R.id.name);
 
 
+
+
     }
 
     public void onClick(View v){
         if(v == playGame){
+            String n = name.getText().toString();
+            System.out.println(n);
             Intent intent = new Intent(this, Spil.class);
-            intent.putExtra("spillerNavn", "Spiller1");
-            this.startActivity(intent);
+            intent.putExtra("spillerNavn", n);
+            if(n.length() > 0){
+                this.startActivity(intent);
+            }else{
+                name.setHint("Husk at skrive et navn");
+            }
+
         }
     }
 }

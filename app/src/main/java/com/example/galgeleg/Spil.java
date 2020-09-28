@@ -26,11 +26,10 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         tekst = (TextView) findViewById(R.id.textView);
         tekst.setText("Du skal gætte Ordet: " + galgelogik.getSynligtOrd());
 
-        navneView = (TextView) findViewById(R.id.nameView);
-        String navn2 = i.getStringExtra("spillerNavn");
-        System.out.println(navn2);
-        navneView.setText("Hej "+ navn2);
-      //  navn.append(i.getStringExtra("name"));
+        navneView = findViewById(R.id.nameView);
+        System.out.println(i.getStringExtra("spillerNavn"));
+        navneView.setText("Hej og velkommen til ");
+        navneView.append(i.getStringExtra("spillerNavn"));
 
 
         //husk at caste

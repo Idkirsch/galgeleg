@@ -55,8 +55,8 @@
 
     <TextView
         android:id="@+id/nameView"
-        android:layout_width="59dp"
-        android:layout_height="15dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:text="@string/hej_navn"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
