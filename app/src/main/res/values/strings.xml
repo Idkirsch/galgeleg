@@ -9,4 +9,6 @@
     <string name="hej_navn">Hej navn:</string>
     <string name="b">B</string>
     <string name="a">A</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

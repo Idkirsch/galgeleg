@@ -1,17 +1,17 @@
 package com.example.galgeleg;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button playGame;
+    Button playGame, highscore;
     TextView name;
 
     @Override
@@ -19,10 +19,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        playGame = findViewById(R.id.button);
+        playGame = findViewById(R.id.startSpil);
         playGame.setOnClickListener(this);
 
+        highscore = findViewById(R.id.highscore);
+        highscore.setOnClickListener(this);
+
         name = findViewById(R.id.name);
+
+
 
 
 
@@ -41,6 +46,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 name.setHint("Husk at skrive et navn");
             }
 
+        }else if(v == highscore){
+            Fragment fragment = new highscore_frag();
+            getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, fragment).commit();
+
+
+          //  getFragmentManager().beginTransaction().replace(R.id.fragment_highscore_frag)
+
+            System.out.println("Der blev trykket på highscore");
         }
     }
 }
