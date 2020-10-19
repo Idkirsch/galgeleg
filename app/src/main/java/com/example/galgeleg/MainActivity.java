@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,6 +15,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button playGame, highscore;
     TextView name;
+    //nedenstående virker ikke rigtigt
+    //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         name = findViewById(R.id.name);
 
-
-
-
-
-
     }
 
     public void onClick(View v){
@@ -42,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("spillerNavn", n);
             if(n.length() > 0){
                 this.startActivity(intent);
+             //   prefs.edit().putString("spillerNavn", n).apply(); //her gemmes navnet til senere (til en highscore el lign)
+                // sådan hentes navnet senere, et andet sted:
+                // String spillernavn = prefs.getString("spillerNavn", "(hvad skal der stå her?)");
             }else{
                 name.setHint("Husk at skrive et navn");
             }

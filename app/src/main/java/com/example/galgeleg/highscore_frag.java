@@ -1,9 +1,11 @@
 package com.example.galgeleg;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,8 @@ import android.webkit.WebView;
 
 public class highscore_frag extends Fragment {
 
+    // sådan ser en preferencemanager ud i et fragment
+    //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity())
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
