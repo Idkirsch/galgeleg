@@ -11,7 +11,7 @@
         android:id="@+id/canvas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#4971FF"
+        android:background="#FA6E9D"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,39 +19,46 @@
 
 
     <TextView
+        android:id="@+id/wordToBeGuessed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="110dp"
+        android:text="@string/textview"
+        android:textSize="25dp"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginLeft="144dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="144dp"
         android:text="@string/textview"
+        android:textColor="@color/funkyColor2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="25dp"/>
+
 
     <Button
-        android:id="@+id/buttonA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="144dp"
-        android:layout_marginLeft="144dp"
-        android:layout_marginTop="309dp"
-        android:text="@string/a"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/buttonB"
+        android:id="@+id/buttonGuess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="46dp"
-        android:text="@string/b"
+        android:text="Gæt på bogstav"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.357" />
+        app:layout_constraintVertical_bias="0.39" />
 
     <TextView
         android:id="@+id/nameView"
@@ -61,7 +68,25 @@
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/canvas" />
+        app:layout_constraintTop_toTopOf="@+id/canvas"
+        android:textSize="25dp"
+        android:textColor="@color/funkyColor3"/>
+
+    <EditText
+        android:id="@+id/input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Tast et bogstav her"
+        tools:layout_editor_absoluteX="143dp"
+        tools:layout_editor_absoluteY="181dp"
+        android:textSize="25dp"
+        android:textColor="@color/funkyColor1"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGuess"
+        app:layout_constraintLeft_toLeftOf="@id/canvas"
+        app:layout_constraintRight_toRightOf="@id/canvas"
+
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
