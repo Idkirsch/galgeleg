@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -36,10 +37,12 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
          *  Sætter teksterne i de tre tekstviews, hhv opdatering på hvor ordene kommer fra, ordet der skal gættes og spillerens navn
          * */
         tekst = (TextView) findViewById(R.id.textView);
-        tekst.setText("Henter ord fra DRs server ");
+       // tekst.setText("Henter ord fra DRs server ");
+        tekst.setText("Tab og vind med samme sind ");
 
         wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
         wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+
 
         navneView = findViewById(R.id.nameView);
         System.out.println(i.getStringExtra("spillerNavn"));
@@ -82,23 +85,39 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View v){
-       if(v == GuessLetter){
-            System.out.println("Trykkede på knap: gæt bogstav");
-            galgelogik.gætBogstav(input.getText().toString());
-            if(galgelogik.erSidsteBogstavKorrekt()){
-                navneView.setText("Juhu, du gættede et bogstav korrekt!");
-            }else{
-                navneView.setText("Æv, det var ikke rigtigt. Prøv igen.\n");
-                navneView.append("\nDu har " + galgelogik.getAntalForkerteBogstaver() + " forkerte:" + galgelogik.getBrugteBogstaver());
-            }
-        }if (v == input){
-            System.out.println("Ændrede tekst i input felt");
+    public void onClick(View v) {
+        if (v == GuessLetter) {
             String bogstav = input.getText().toString();
-            System.out.println(bogstav);
+            System.out.println("Trykkede på knap: gæt bogstav");
+            if (bogstav.length() == 1) {
+                galgelogik.gætBogstav(bogstav);
+                if (galgelogik.erSidsteBogstavKorrekt()) {
+                    navneView.setText("Juhu, du gættede et bogstav korrekt!");
+                    didTheyWin();
+                    wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+                } else {
+                    navneView.setText("Æv, det var ikke rigtigt. Prøv igen.\n");
+                    didTheyLose();
+                }
+                navneView.append("\nDu har " + galgelogik.getAntalForkerteBogstaver() + " forkerte.\n"
+                        +"og du har gættet på "+ galgelogik.getBrugteBogstaver());
+                System.out.println(galgelogik.getAntalForkerteBogstaver());
+            } else {
+                navneView.setText("Du skal gætte på nøjagtig ét bogstav\n"); }
+            input.setText("");
         }
     }
 
+    private void didTheyWin(){
+            if(galgelogik.erSpilletVundet()){
+                navneView.setText("Yes, du vandt!");
+            }
+    }
 
+    private void didTheyLose(){
+        if(galgelogik.erSpilletTabt()){
+            navneView.setText("Pis, du har tabt");
+        }
+    }
 
 }

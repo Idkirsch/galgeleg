@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="170dp"
         android:text="@string/textview"
         android:textSize="25dp"
         android:textColor="@color/colorPrimaryDark"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="200dp"
         android:text="@string/textview"
         android:textColor="@color/funkyColor2"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
         app:layout_constraintHorizontal_bias="0.445"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintVertical_bias="0.50" />
 
     <TextView
         android:id="@+id/nameView"
@@ -77,16 +77,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Tast et bogstav her"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="181dp"
-        android:textSize="25dp"
         android:textColor="@color/funkyColor1"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonGuess"
         app:layout_constraintLeft_toLeftOf="@id/canvas"
         app:layout_constraintRight_toRightOf="@id/canvas"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
 
-        />
+        app:layout_constraintVertical_bias="0.87" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
