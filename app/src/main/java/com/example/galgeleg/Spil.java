@@ -121,6 +121,8 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
     private void didTheyLose(){
         if(galgelogik.erSpilletTabt()){
             navneView.setText("Pis, du har tabt");
+            Intent intent = new Intent(this, Tabt.class);
+            this.startActivity(intent);
         }
     }
 
