@@ -6,5 +6,9 @@
     <color name="funkyColor1">#FB36CA</color>
     <color name="funkyColor2">#55DA03</color>
     <color name="funkyColor3">#DA031C</color>
+    <color name="losingColor">#989292</color>
+    <color name="losingColor2">#D7DDD8</color>
+    <color name="losingColor3">#46484C</color>
+    <color name="losingTextColor">#55707E</color>
 
 </resources>
