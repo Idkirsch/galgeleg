@@ -38,11 +38,8 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
          *  Sætter teksterne i de tre tekstviews, hhv opdatering på hvor ordene kommer fra, ordet der skal gættes og spillerens navn
          * */
         tekst = (TextView) findViewById(R.id.textView);
-       // tekst.setText("Henter ord fra DRs server ");
         tekst.setText("Tab og vind med samme sind ");
 
-        wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
-        wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
 
 
         navneView = findViewById(R.id.nameView);
@@ -67,21 +64,22 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
          * Der oprettes en baggrundstråd som henter nogle ord fra DR
          * Teksten på skærmen opdateres med en meddelelse om det lykkedes eller ej
          * */
-/*
+
         backgroundThread.execute(() ->{
           try {
               galgelogik.hentOrdFraDr();
               uiThread.post(() -> {
-                  tekst.setText("Ordene blev korrekt hentet");
+                  System.out.println("Ord blev hentet fra DRs server");
               });
           }catch (Exception e){
               e.printStackTrace();
-              uiThread.post(() -> {
-                  tekst.setText("Ordene blev ikke hentet korretk" +e);
-              });
           }
         });
-*/
+
+        wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
+        wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+
+
 
     }
 
