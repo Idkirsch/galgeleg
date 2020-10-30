@@ -2,6 +2,7 @@ package com.example.galgeleg;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -109,8 +110,11 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void didTheyWin(){
+
             if(galgelogik.erSpilletVundet()){
                 navneView.setText("Yes, du vandt!");
+                Intent intent = new Intent(this, Vundet.class);
+                this.startActivity(intent);
             }
     }
 

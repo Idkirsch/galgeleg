@@ -41,9 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("spillerNavn", n);
             if(n.length() > 0){
                 this.startActivity(intent);
-             //   prefs.edit().putString("spillerNavn", n).apply(); //her gemmes navnet til senere (til en highscore el lign)
-                // sådan hentes navnet senere, et andet sted:
-                // String spillernavn = prefs.getString("spillerNavn", "(hvad skal der stå her?)");
             }else{
                 name.setHint("Husk at skrive et navn");
             }
