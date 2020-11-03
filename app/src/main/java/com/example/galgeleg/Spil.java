@@ -21,6 +21,7 @@ import java.util.concurrent.Executors;
 public class Spil extends AppCompatActivity implements View.OnClickListener {
 
     Galgelogik galgelogik = new Galgelogik();
+    HentOrd hentOrd = new HentOrd();
     TextView tekst, navneView, wordToGuess;
     EditText input;
     Button GuessLetter;
@@ -75,7 +76,7 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
 
         backgroundThread.execute(() ->{
           try {
-              galgelogik.hentOrdFraDr();
+              hentOrd.hentOrdFraDr();
               uiThread.post(() -> {
                   System.out.println("Ord blev hentet fra DRs server");
 
