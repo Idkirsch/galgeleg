@@ -18,7 +18,6 @@ public class Tabt extends AppCompatActivity implements View.OnClickListener {
 
         forfra = (Button) findViewById(R.id.genstartTaber);
         forfra.setOnClickListener(this);
-
     }
 
     @Override
@@ -27,6 +26,5 @@ public class Tabt extends AppCompatActivity implements View.OnClickListener {
             Intent intent = new Intent(this, MainActivity.class);
             this.startActivity(intent);
         }
-
     }
 }

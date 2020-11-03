@@ -49,9 +49,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Fragment fragment = new highscore_frag();
             getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, fragment).commit();
 
-
-          //  getFragmentManager().beginTransaction().replace(R.id.fragment_highscore_frag)
-
             System.out.println("Der blev trykket på highscore");
         }
     }

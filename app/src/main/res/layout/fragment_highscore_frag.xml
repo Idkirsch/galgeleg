@@ -3,15 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_purple"
+    android:background="@color/losingColor"
     tools:context=".highscore_frag">
 
 
     <TextView
-
+        android:id="@+id/highscore_frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        tools:text="HEJSA" />
+        android:text="@string/highscore_fragment_text"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/funkyColor3"
+        android:textSize="30dp"/>
 
 </FrameLayout>
