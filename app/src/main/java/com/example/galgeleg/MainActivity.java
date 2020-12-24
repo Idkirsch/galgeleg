@@ -47,9 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }else if(v == highscore){
             Fragment fragment = new highscore_frag();
-            getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, fragment).commit();
+          //  getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, fragment).commit();
 
             System.out.println("Der blev trykket på highscore");
+        }else if(v == name){
+            System.out.println("trykkede på navnefelt");
         }
     }
 }

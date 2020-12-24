@@ -2,13 +2,16 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="funkyColor1">#FB36CA</color>
-    <color name="funkyColor2">#55DA03</color>
-    <color name="funkyColor3">#DA031C</color>
-    <color name="losingColor">#989292</color>
-    <color name="losingColor2">#D7DDD8</color>
-    <color name="losingColor3">#46484C</color>
-    <color name="losingTextColor">#55707E</color>
+    <color name="Turkis">#03DAC5</color>
+    <color name="Pink">#FB36CA</color>
+    <color name="Green">#55DA03</color>
+    <color name="Red">#DA031C</color>
+    <color name="DarkGrey">#989292</color>
+    <color name="LightGrey">#D7DDD8</color>
+    <color name="Black">#46484C</color>
+    <color name="Elephant">#55707E</color>
+    <color name="Yellow">#FFEB3B</color>
+    <color name="Blue">#00D8F4</color>
+
 
 </resources>

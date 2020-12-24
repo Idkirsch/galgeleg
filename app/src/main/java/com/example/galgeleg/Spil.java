@@ -87,10 +87,6 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
               e.printStackTrace();
           }
         });
-
-
-
-
     }
 
     @Override
@@ -114,6 +110,8 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
             } else {
                 navneView.setText("Du skal gætte på nøjagtig ét bogstav\n"); }
             input.setText("");
+        }else if (v == input){
+            System.out.println("klikkede på inputfelt");
         }
     }
 

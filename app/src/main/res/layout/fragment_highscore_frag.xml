@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/losingColor"
+    android:background="@color/DarkGrey"
     tools:context=".highscore_frag">
 
 
@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:text="@string/highscore_fragment_text"
         android:layout_marginTop="10dp"
-        android:textColor="@color/funkyColor3"
+        android:textColor="@color/Red"
         android:textSize="30dp"/>
 
 </FrameLayout>

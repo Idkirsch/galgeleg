@@ -32,6 +32,7 @@ public class HentOrd {
     /**
      * Hent ord fra DRs forside (https://dr.dk)
      */
+
     public void hentOrdFraDr() throws Exception {
         String data = hentUrl("https://dr.dk");
         //System.out.println("data = " + data);

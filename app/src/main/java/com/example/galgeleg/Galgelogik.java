@@ -21,6 +21,7 @@ public class Galgelogik {
     private boolean spilletErTabt;
 
     public Galgelogik() {
+
         muligeOrd.add("bil");
         muligeOrd.add("computer");
         muligeOrd.add("programmering");
@@ -74,8 +75,8 @@ public class Galgelogik {
         spilletErTabt = false;
         if (muligeOrd.isEmpty()) throw new IllegalStateException("Listen over mulige ord er tom!");
         ordet = muligeOrd.get(new Random().nextInt(muligeOrd.size()));
-        System.out.println("Nyt spil - det skjulte ord er: "+ordet);
-        opdaterSynligtOrd();
+         System.out.println("Nyt spil - det skjulte ord er: "+ordet);
+         opdaterSynligtOrd();
     }
 
 

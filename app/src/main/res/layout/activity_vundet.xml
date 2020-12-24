@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Vundet"
-    android:background="@color/funkyColor1">
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/Pink">
 
 
     <TextView
@@ -13,25 +15,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tillykke"
-        android:textColor="@color/funkyColor2"
+        android:textColor="@color/Green"
         android:textSize="33dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.30"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:layout_marginTop="100dp"
+        />
 
     <Button
         android:id="@+id/NytSpilVundet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Spil igen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Tillyke"
         app:layout_constraintVertical_bias="0.1"
-        android:textColorHint="@color/colorPrimaryDark"/>
+        android:textColorHint="@color/colorPrimaryDark"
+        android:layout_marginTop="20dp"
+        />
 
 
     <Button
@@ -39,11 +36,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Gem score"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/NytSpilVundet"
-        app:layout_constraintVertical_bias="0.03"/>
+        app:layout_constraintVertical_bias="0.03"
+        android:layout_marginTop="20dp"
+        />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

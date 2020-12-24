@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Tabt"
+    android:orientation="vertical"
     android:background="@drawable/loserbackground">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -14,34 +15,24 @@
         android:layout_margin="16dp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/raincloud"
-        tools:ignore="MissingClass,MissingConstraints"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:lottie_rawRes="@raw/raincloud" />
 
     <TextView
         android:id="@+id/duHarTabt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Du har tabt!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.33"
         android:textSize="50dp"
-        android:fontFamily="sans-serif-smallcaps"/>
+        android:fontFamily="sans-serif-smallcaps"
+        android:layout_marginLeft="20dp"
+        />
 
     <Button
         android:id="@+id/genstartTaber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Spil igen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/duHarTabt"
-        app:layout_constraintVertical_bias="0.07999998" />
+        android:layout_marginLeft="80dp"
+        />
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
