@@ -3,6 +3,7 @@ package com.example.galgeleg;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -40,8 +41,8 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         setContentView(R.layout.activity_spil);
         Intent i = getIntent();
 
-        prefMan = PreferenceManager.getDefaultSharedPreferences(this);
-
+        //prefMan = PreferenceManager.getDefaultSharedPreferences(this);
+        prefMan = this.getSharedPreferences("GemDataTest", Context.MODE_PRIVATE);
 
         /**
          *  Sætter teksterne i de tre tekstviews, hhv opdatering på hvor ordene kommer fra, ordet der skal gættes og spillerens navn
@@ -119,7 +120,14 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
 
             if(galgelogik.erSpilletVundet()){
                 navneView.setText("Yes, du vandt!");
-                prefMan.edit().putString("spillernavn", spillernavn).apply();
+               // prefMan.edit().putString("spillernavn", spillernavn).apply();
+                SharedPreferences.Editor editor = prefMan.edit();
+                editor.putString("spillernavn1", spillernavn);
+                editor.commit();
+
+                String prefSpillerNavn = prefMan.getString("spillernavn1", "defaultValue");
+                System.out.println("prefSpillerNavn "+prefSpillerNavn);
+
                 Intent intent = new Intent(this, Vundet.class);
                 this.startActivity(intent);
             }
