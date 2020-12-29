@@ -28,6 +28,7 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
     Button GuessLetter;
     String spillernavn;
     SharedPreferences prefMan;
+    int point;
 
   /**
    * Instantierer en baggrundstråd og en maintråd (ui)
@@ -69,6 +70,10 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         input = new EditText(this);
         input = findViewById(R.id.input);
         input.setOnClickListener(this);
+
+        point = galgelogik.getSynligtOrd().length();
+        System.out.println("point: "+point);
+
 
         /**
          * Der oprettes en baggrundstråd som henter nogle ord fra DR
@@ -122,7 +127,7 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
                 navneView.setText("Yes, du vandt!");
                // prefMan.edit().putString("spillernavn", spillernavn).apply();
                 SharedPreferences.Editor editor = prefMan.edit();
-                editor.putString(spillernavn, "420");
+                editor.putString(spillernavn, String.valueOf(point));
                 editor.commit();
 
 //                String prefSpillerNavn = prefMan.getString("spillernavn1", "defaultValue");

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         prefMan = this.getSharedPreferences("GemDataTest", Context.MODE_PRIVATE);
         String spillernavn = prefMan.getString("spillernavn1", "ingen gemt tekst");
         System.out.println("prefman all: "+prefMan.getAll());
-        System.out.println("Det seneste spillernavn: "+ spillernavn);
+        System.out.println("Det første spillernavn: "+ spillernavn);
 
     }
 
