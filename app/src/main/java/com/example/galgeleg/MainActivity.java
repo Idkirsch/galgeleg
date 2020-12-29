@@ -3,6 +3,7 @@ package com.example.galgeleg;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView name;
     //nedenstående virker ikke rigtigt
     //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
+    SharedPreferences prefMan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         highscore.setOnClickListener(this);
 
         name = findViewById(R.id.name);
+
+        prefMan = this.getSharedPreferences("GemDataTest", Context.MODE_PRIVATE);
+        String spillernavn = prefMan.getString("spillernavn1", "ingen gemt tekst");
+        System.out.println("prefman all: "+prefMan.getAll());
+        System.out.println("Det seneste spillernavn: "+ spillernavn);
 
     }
 

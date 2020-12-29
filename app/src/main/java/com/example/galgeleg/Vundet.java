@@ -2,6 +2,7 @@ package com.example.galgeleg;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,9 +25,11 @@ public class Vundet extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vundet);
 
-        prefMan = PreferenceManager.getDefaultSharedPreferences(this);
-        String spillernavn = prefMan.getString("spillernavn", "ingen gemt tekst");
-        System.out.println("spillernavn: "+ spillernavn);
+       // prefMan = PreferenceManager.getDefaultSharedPreferences(this);
+        prefMan = this.getSharedPreferences("GemDataTest", Context.MODE_PRIVATE);
+        String spillernavn = prefMan.getString("spillernavn1", "ingen gemt tekst");
+        System.out.println("spillernavn1: "+ spillernavn);
+
 
         tillykke = (TextView) findViewById(R.id.Tillyke);
         tillykke.append(" "+ spillernavn + ", du har vundet!");

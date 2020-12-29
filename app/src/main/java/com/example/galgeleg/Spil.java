@@ -122,11 +122,11 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
                 navneView.setText("Yes, du vandt!");
                // prefMan.edit().putString("spillernavn", spillernavn).apply();
                 SharedPreferences.Editor editor = prefMan.edit();
-                editor.putString("spillernavn1", spillernavn);
+                editor.putString(spillernavn, "420");
                 editor.commit();
 
-                String prefSpillerNavn = prefMan.getString("spillernavn1", "defaultValue");
-                System.out.println("prefSpillerNavn "+prefSpillerNavn);
+//                String prefSpillerNavn = prefMan.getString("spillernavn1", "defaultValue");
+//                System.out.println("prefSpillerNavn "+prefSpillerNavn);
 
                 Intent intent = new Intent(this, Vundet.class);
                 this.startActivity(intent);
