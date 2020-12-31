@@ -19,6 +19,8 @@ public class Vundet extends AppCompatActivity implements View.OnClickListener {
     Button nytspil, gemScore;
     TextView tillykke;
     SharedPreferences prefMan;
+    String spillerNavn;
+    int point;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +29,17 @@ public class Vundet extends AppCompatActivity implements View.OnClickListener {
 
        // prefMan = PreferenceManager.getDefaultSharedPreferences(this);
         prefMan = this.getSharedPreferences("GemDataTest", Context.MODE_PRIVATE);
+
         String spillernavn = prefMan.getString("spillernavn1", "ingen gemt tekst");
         System.out.println("spillernavn1: "+ spillernavn);
 
+        Intent i = getIntent();
+        spillerNavn = i.getStringExtra("spillerNavn");
+        point = i.getIntExtra("point", point);
+
 
         tillykke = (TextView) findViewById(R.id.Tillyke);
-        tillykke.append(" "+ spillernavn + ", du har vundet!");
+        tillykke.append(" "+ spillerNavn + ", du har vundet!");
 
         nytspil = (Button) findViewById(R.id.NytSpilVundet);
         nytspil.setOnClickListener(this);
@@ -54,19 +61,13 @@ public class Vundet extends AppCompatActivity implements View.OnClickListener {
         }
         if(view == gemScore){
             System.out.println("der blev trykket på gem highscore knappen");
+
+            SharedPreferences.Editor editor = prefMan.edit();
+            editor.putString(spillerNavn, String.valueOf(point));
+            editor.commit();
+
             //saveScore();
         }
     }
 
-/* Det her kan måske bruges senere til at gemme highscore i json format
-
-    private void saveScore(){
-        prefMan = getSharedPreferences("shared preferences", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefMan.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson()
-
-    }
-
- */
 }

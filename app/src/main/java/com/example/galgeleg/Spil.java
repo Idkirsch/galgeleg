@@ -2,19 +2,16 @@ package com.example.galgeleg;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -22,12 +19,12 @@ import java.util.concurrent.Executors;
 public class Spil extends AppCompatActivity implements View.OnClickListener {
 
     Galgelogik galgelogik = new Galgelogik();
-    HentOrd hentOrd = new HentOrd();
+   // HentOrd hentOrd = new HentOrd();
     TextView tekst, navneView, wordToGuess;
     EditText input;
     Button GuessLetter;
-    String spillernavn;
-    SharedPreferences prefMan;
+    String spillerNavn;
+   // SharedPreferences prefMan;
     int point;
 
   /**
@@ -40,10 +37,9 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spil);
-        Intent i = getIntent();
 
         //prefMan = PreferenceManager.getDefaultSharedPreferences(this);
-        prefMan = this.getSharedPreferences("GemDataTest", Context.MODE_PRIVATE);
+       // prefMan = this.getSharedPreferences("GemDataTest", Context.MODE_PRIVATE);
 
         /**
          *  Sætter teksterne i de tre tekstviews, hhv opdatering på hvor ordene kommer fra, ordet der skal gættes og spillerens navn
@@ -52,16 +48,16 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         tekst.setText("Tab og vind med samme sind ");
 
 
-        spillernavn = i.getStringExtra("spillerNavn");
-        navneView = findViewById(R.id.nameView);
-        System.out.println(spillernavn);
-        navneView.setText("Hej og velkommen til ");
-        navneView.append(spillernavn);
+        //spillerNavn bliver sendt videre vha intents indbyggede funktionalitet
+        Intent i = getIntent();
+        spillerNavn = i.getStringExtra("spillerNavn");
+        System.out.println(spillerNavn);
 
-        /**
-         * Knappen hvor man gætter et bogstav instantieres
-         * Inputfeltet hvor brugeren taster sit gæt instantieres
-         * */
+
+        navneView = findViewById(R.id.nameView);
+        navneView.setText("Hej og velkommen til ");
+        navneView.append(spillerNavn);
+
 
         GuessLetter = new Button(this);
         GuessLetter = (Button) findViewById(R.id.buttonGuess);
@@ -80,19 +76,20 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
          * Teksten på skærmen opdateres med en meddelelse om det lykkedes eller ej
          * */
 
-        backgroundThread.execute(() ->{
-          try {
-              hentOrd.hentOrdFraDr();
-              uiThread.post(() -> {
-                  System.out.println("Ord blev hentet fra DRs server");
-
-                  wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
-                  wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
-              });
-          }catch (Exception e){
-              e.printStackTrace();
-          }
-        });
+//        backgroundThread.execute(() ->{
+//          try {
+//              hentOrd.hentOrdFraDr();
+//              uiThread.post(() -> {
+//                  System.out.println("Ord blev hentet fra DRs server");
+//
+//                  wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
+//                  wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+//              });
+//          }catch (Exception e){
+//              e.printStackTrace();
+//          }
+//        });
+//
     }
 
     @Override
@@ -105,7 +102,7 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
                 if (galgelogik.erSidsteBogstavKorrekt()) {
                     navneView.setText("Juhu, du gættede et bogstav korrekt!");
                     didTheyWin();
-                    wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+  //                  wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
                 } else {
                     navneView.setText("Æv, det var ikke rigtigt. Prøv igen.\n");
                     didTheyLose();
@@ -125,15 +122,15 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
 
             if(galgelogik.erSpilletVundet()){
                 navneView.setText("Yes, du vandt!");
-               // prefMan.edit().putString("spillernavn", spillernavn).apply();
-                SharedPreferences.Editor editor = prefMan.edit();
-                editor.putString(spillernavn, String.valueOf(point));
-                editor.commit();
 
-//                String prefSpillerNavn = prefMan.getString("spillernavn1", "defaultValue");
-//                System.out.println("prefSpillerNavn "+prefSpillerNavn);
+//                SharedPreferences.Editor editor = prefMan.edit();
+//                editor.putString(spillerNavn, String.valueOf(point));
+//                editor.commit();
+
 
                 Intent intent = new Intent(this, Vundet.class);
+                intent.putExtra("spillerNavn", spillerNavn);
+                intent.putExtra("point", point);
                 this.startActivity(intent);
             }
     }
