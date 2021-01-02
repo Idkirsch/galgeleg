@@ -4,63 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:background="@color/Yellow"
-    >
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/highscore"
-        android:layout_width="189dp"
-        android:layout_height="99dp"
-        android:layout_marginLeft="8dp"
-        android:background="#E91E63"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="highscore"
-        android:textColor="#00FF41"
-        android:textSize="30sp"
-        android:layout_marginTop="20dp"
+<!--    <Button-->
+<!--        android:id="@+id/highscoreButton"-->
+<!--        android:layout_width="189dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginLeft="8dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:background="#E91E63"-->
+<!--        android:fontFamily="sans-serif-condensed-medium"-->
+<!--        android:text="highscore"-->
+<!--        android:textColor="#00FF41"-->
+<!--        android:textSize="30sp"-->
 
-        />
+<!--        />-->
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/sjovLegGaetOrd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/sjov_leg"
         android:textColor="#FB0000"
-        android:textSize="36sp"
-        android:layout_marginTop="20dp"
-        />
+        android:textSize="26sp" />
 
 
     <EditText
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:fontFamily="casual"
         android:hint="@string/skriv_dit_navn"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:textColor="@color/Black"
-        android:layout_marginTop="20dp"
 
         />
 
     <Button
         android:id="@+id/startSpil"
         android:layout_width="189dp"
-        android:layout_height="99dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         android:background="#9C27B0"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="@string/start_spil"
         android:textColor="#00FF41"
-        android:textSize="30sp"
-        android:layout_marginTop="80dp"
-        />
+        android:textSize="30sp" />
 
+
+    <FrameLayout
+        android:id="@+id/highscore_frag"
+        android:name="com.example.galgeleg.highscore_frag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+        android:layout_margin="15dp" />
 
 
 </LinearLayout>

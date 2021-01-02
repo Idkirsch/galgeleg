@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,9 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button playGame, highscore;
     TextView name;
-    //nedenstående virker ikke rigtigt
-    //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    SharedPreferences prefMan;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,16 +24,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         playGame = findViewById(R.id.startSpil);
         playGame.setOnClickListener(this);
 
-        highscore = findViewById(R.id.highscore);
-        highscore.setOnClickListener(this);
-
         name = findViewById(R.id.name);
 
-        prefMan = this.getSharedPreferences("GemDataTest", Context.MODE_PRIVATE);
-        String spillernavn = prefMan.getString("spillernavn1", "ingen gemt tekst");
-        System.out.println("prefman all: "+prefMan.getAll());
-        System.out.println("Det første spillernavn: "+ spillernavn);
+        loadFragment(new highscore_frag());
 
+    }
+
+    private void loadFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.highscore_frag, fragment, fragment.getClass().getSimpleName()).commit();
     }
 
     public void onClick(View v){
@@ -50,12 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }else{
                 name.setHint("Husk at skrive et navn");
             }
-
-        }else if(v == highscore){
-            Fragment fragment = new highscore_frag();
-          //  getSupportFragmentManager().beginTransaction().replace(R.id.FrameLayout, fragment).commit();
-
-            System.out.println("Der blev trykket på highscore");
+//
+//        }else if(v == highscore){
+//
+//
+//            System.out.println("Der blev trykket på highscore");
         }else if(v == name){
             System.out.println("trykkede på navnefelt");
         }
