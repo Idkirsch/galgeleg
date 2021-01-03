@@ -20,7 +20,7 @@ public class Vundet extends AppCompatActivity implements View.OnClickListener {
     TextView tillykke;
     SharedPreferences prefMan;
     String spillerNavn;
-    int point;
+    int point, antalGaet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +36,11 @@ public class Vundet extends AppCompatActivity implements View.OnClickListener {
         Intent i = getIntent();
         spillerNavn = i.getStringExtra("spillerNavn");
         point = i.getIntExtra("point", point);
+        antalGaet = i.getIntExtra("antalGaet", antalGaet);
 
 
         tillykke = (TextView) findViewById(R.id.Tillyke);
-        tillykke.append(" "+ spillerNavn + ", du har vundet!");
+        tillykke.append(" "+ spillerNavn + ", du har vundet! med antal gæt : "+antalGaet);
 
         nytspil = (Button) findViewById(R.id.NytSpilVundet);
         nytspil.setOnClickListener(this);

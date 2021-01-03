@@ -25,6 +25,8 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
     Button GuessLetter;
     String spillerNavn;
     int point;
+    int antalGaet = 0;
+
 
   /**
    * Instantierer en baggrundstråd og en maintråd (ui)
@@ -94,6 +96,8 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         if (v == GuessLetter) {
             String bogstav = input.getText().toString();
             System.out.println("Trykkede på knap: gæt bogstav");
+            antalGaet = antalGaet+1;
+            System.out.println("antal gæt : " + antalGaet);
             if (bogstav.length() == 1) {
                 hentOrd.galgelogik.gætBogstav(bogstav);
                 if (hentOrd.galgelogik.erSidsteBogstavKorrekt()) {
@@ -123,6 +127,7 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
                 Intent intent = new Intent(this, Vundet.class);
                 intent.putExtra("spillerNavn", spillerNavn);
                 intent.putExtra("point", point);
+                intent.putExtra("antalGaet", antalGaet);
                 this.startActivity(intent);
             }
     }
