@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class Level extends AppCompatActivity implements View.OnClickListener {
+public class Level extends AppCompatActivity {
 
     Button videre;
     ListView listen;
