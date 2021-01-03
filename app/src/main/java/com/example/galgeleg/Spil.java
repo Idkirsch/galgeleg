@@ -18,13 +18,12 @@ import java.util.concurrent.Executors;
 
 public class Spil extends AppCompatActivity implements View.OnClickListener {
 
-    Galgelogik galgelogik = new Galgelogik();
-   // HentOrd hentOrd = new HentOrd();
+    //Galgelogik galgelogik = new Galgelogik();
+    HentOrd hentOrd = new HentOrd();
     TextView tekst, navneView, wordToGuess;
     EditText input;
     Button GuessLetter;
     String spillerNavn;
-   // SharedPreferences prefMan;
     int point;
 
   /**
@@ -37,9 +36,6 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spil);
-
-        //prefMan = PreferenceManager.getDefaultSharedPreferences(this);
-       // prefMan = this.getSharedPreferences("GemDataTest", Context.MODE_PRIVATE);
 
         /**
          *  Sætter teksterne i de tre tekstviews, hhv opdatering på hvor ordene kommer fra, ordet der skal gættes og spillerens navn
@@ -67,29 +63,30 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         input = findViewById(R.id.input);
         input.setOnClickListener(this);
 
-        point = galgelogik.getSynligtOrd().length();
-        System.out.println("point: "+point);
-
 
         /**
          * Der oprettes en baggrundstråd som henter nogle ord fra DR
          * Teksten på skærmen opdateres med en meddelelse om det lykkedes eller ej
          * */
 
-//        backgroundThread.execute(() ->{
-//          try {
-//              hentOrd.hentOrdFraDr();
-//              uiThread.post(() -> {
-//                  System.out.println("Ord blev hentet fra DRs server");
-//
-//                  wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
-//                  wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
-//              });
-//          }catch (Exception e){
-//              e.printStackTrace();
-//          }
-//        });
-//
+        backgroundThread.execute(() ->{
+          try {
+              hentOrd.hentOrdFraDr();
+              uiThread.post(() -> {
+                  System.out.println("Ord blev hentet fra DRs server");
+
+                  wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
+                  wordToGuess.setText("Du skal gætte ordet " + hentOrd.galgelogik.getSynligtOrd());
+
+                  point = hentOrd.galgelogik.getSynligtOrd().length();
+                  System.out.println("point: "+point);
+
+              });
+          }catch (Exception e){
+              e.printStackTrace();
+          }
+        });
+
     }
 
     @Override
@@ -98,18 +95,18 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
             String bogstav = input.getText().toString();
             System.out.println("Trykkede på knap: gæt bogstav");
             if (bogstav.length() == 1) {
-                galgelogik.gætBogstav(bogstav);
-                if (galgelogik.erSidsteBogstavKorrekt()) {
+                hentOrd.galgelogik.gætBogstav(bogstav);
+                if (hentOrd.galgelogik.erSidsteBogstavKorrekt()) {
                     navneView.setText("Juhu, du gættede et bogstav korrekt!");
                     didTheyWin();
-  //                  wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+                    wordToGuess.setText("Du skal gætte ordet " + hentOrd.galgelogik.getSynligtOrd());
                 } else {
                     navneView.setText("Æv, det var ikke rigtigt. Prøv igen.\n");
                     didTheyLose();
                 }
-                navneView.append("\nDu har " + galgelogik.getAntalForkerteBogstaver() + " forkerte.\n"
-                        +"og du har gættet på "+ galgelogik.getBrugteBogstaver());
-                System.out.println(galgelogik.getAntalForkerteBogstaver());
+                navneView.append("\nDu har " + hentOrd.galgelogik.getAntalForkerteBogstaver() + " forkerte.\n"
+                        +"og du har gættet på "+ hentOrd.galgelogik.getBrugteBogstaver());
+                System.out.println(hentOrd.galgelogik.getAntalForkerteBogstaver());
             } else {
                 navneView.setText("Du skal gætte på nøjagtig ét bogstav\n"); }
             input.setText("");
@@ -120,13 +117,8 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
 
     private void didTheyWin(){
 
-            if(galgelogik.erSpilletVundet()){
+            if(hentOrd.galgelogik.erSpilletVundet()){
                 navneView.setText("Yes, du vandt!");
-
-//                SharedPreferences.Editor editor = prefMan.edit();
-//                editor.putString(spillerNavn, String.valueOf(point));
-//                editor.commit();
-
 
                 Intent intent = new Intent(this, Vundet.class);
                 intent.putExtra("spillerNavn", spillerNavn);
@@ -136,7 +128,7 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void didTheyLose(){
-        if(galgelogik.erSpilletTabt()){
+        if(hentOrd.galgelogik.erSpilletTabt()){
             navneView.setText("Pis, du har tabt");
             Intent intent = new Intent(this, Tabt.class);
             this.startActivity(intent);
