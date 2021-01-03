@@ -136,6 +136,7 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         if(hentOrd.galgelogik.erSpilletTabt()){
             navneView.setText("Pis, du har tabt");
             Intent intent = new Intent(this, Tabt.class);
+            intent.putExtra("wordToGuess", hentOrd.galgelogik.getOrdet());
             this.startActivity(intent);
         }
     }

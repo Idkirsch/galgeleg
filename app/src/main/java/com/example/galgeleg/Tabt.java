@@ -10,11 +10,16 @@ import android.widget.Button;
 public class Tabt extends AppCompatActivity implements View.OnClickListener {
 
     Button forfra;
+    String ord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabt);
+
+        Intent i = getIntent();
+        ord = i.getStringExtra("wordToGuess");
+        System.out.println("tabt :-( ... ordet var: "+ ord);
 
         forfra = (Button) findViewById(R.id.genstartTaber);
         forfra.setOnClickListener(this);
