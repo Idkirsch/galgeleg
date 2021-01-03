@@ -85,6 +85,7 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
 
         wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
         wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+        point = galgelogik.getOrdet().length();
 
         /**
          * Der oprettes en baggrundstråd som henter nogle ord fra DR

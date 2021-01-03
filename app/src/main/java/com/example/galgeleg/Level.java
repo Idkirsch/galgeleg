@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -22,6 +23,7 @@ public class Level extends AppCompatActivity implements View.OnClickListener {
     ListView listen;
     String spillerNavn;
     HentOrd hentOrd = new HentOrd();
+    String ordet;
 
 
 
@@ -67,6 +69,8 @@ public class Level extends AppCompatActivity implements View.OnClickListener {
 
                     listen = (ListView) findViewById(R.id.list_view);
                     listen.setAdapter(adapter);
+                    listen.setOnItemClickListener(messageClickHandler);
+
                 });
             }catch (Exception e){
                 e.printStackTrace();
@@ -75,12 +79,22 @@ public class Level extends AppCompatActivity implements View.OnClickListener {
     }
 
 
+    private AdapterView.OnItemClickListener messageClickHandler = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            System.out.println("der blev klikket på listen");
+            System.out.println("der blev klikket på: " + hentOrd.galgelogik.muligeOrd.get(i));
+            ordet = hentOrd.galgelogik.muligeOrd.get(i);
+        }
+    };
+
+
     @Override
     public void onClick(View view) {
         if(view == videre){
             Intent intent = new Intent(this, Spil.class);
             intent.putExtra("spillerNavn", spillerNavn);
-            intent.putExtra("valgtOrd", "karl");
+            intent.putExtra("valgtOrd", ordet);
             this.startActivity(intent);
         }
     }
