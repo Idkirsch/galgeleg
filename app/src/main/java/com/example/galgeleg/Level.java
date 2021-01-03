@@ -25,8 +25,6 @@ public class Level extends AppCompatActivity implements View.OnClickListener {
     HentOrd hentOrd = new HentOrd();
     String ordet;
 
-
-
     Executor backgroundThread = Executors.newSingleThreadExecutor();
     Handler uiThread = new Handler(Looper.getMainLooper());
 
@@ -35,27 +33,12 @@ public class Level extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level);
-
-
-        videre = (Button) findViewById(R.id.knap_til_spil);
-        videre.setOnClickListener(this);
-
-
-
         Intent i = getIntent();
         spillerNavn = i.getStringExtra("spillerNavn");
-
         hentFraDR();
-
         hentOrd.galgelogik.logStatus();
 
-
-        //System.out.println("ordene: "+ hentOrd.galgelogik.muligeOrd);
-
-
     }
-
-
 
     private void hentFraDR() {
         backgroundThread.execute(() ->{
@@ -68,7 +51,19 @@ public class Level extends AppCompatActivity implements View.OnClickListener {
 
                     listen = (ListView) findViewById(R.id.list_view);
                     listen.setAdapter(adapter);
-                    listen.setOnItemClickListener(messageClickHandler);
+                    listen.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            System.out.println(" der blev klikket 3");
+                            System.out.println("der blev klikket på listen");
+                            System.out.println("der blev klikket på: " + hentOrd.galgelogik.muligeOrd.get(i));
+                            ordet = hentOrd.galgelogik.muligeOrd.get(i);
+                            Intent intent = new Intent(Level.this, Spil.class);
+                            intent.putExtra("spillerNavn", spillerNavn);
+                            intent.putExtra("valgtOrd", ordet);
+                            startActivity(intent);
+                        }
+                    });
 
                 });
             }catch (Exception e){
@@ -77,24 +72,4 @@ public class Level extends AppCompatActivity implements View.OnClickListener {
         });
     }
 
-
-    private AdapterView.OnItemClickListener messageClickHandler = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            System.out.println("der blev klikket på listen");
-            System.out.println("der blev klikket på: " + hentOrd.galgelogik.muligeOrd.get(i));
-            ordet = hentOrd.galgelogik.muligeOrd.get(i);
-        }
-    };
-
-
-    @Override
-    public void onClick(View view) {
-        if(view == videre){
-            Intent intent = new Intent(this, Spil.class);
-            intent.putExtra("spillerNavn", spillerNavn);
-            intent.putExtra("valgtOrd", ordet);
-            this.startActivity(intent);
-        }
-    }
 }

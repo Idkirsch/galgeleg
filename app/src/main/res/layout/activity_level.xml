@@ -7,11 +7,11 @@
     tools:context=".Level"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/knap_til_spil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Videre til spillet" />
+<!--    <Button-->
+<!--        android:id="@+id/knap_til_spil"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Videre til spillet" />-->
 
     <ListView
         android:id="@+id/list_view"
