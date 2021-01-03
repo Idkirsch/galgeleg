@@ -92,23 +92,6 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
          * Teksten på skærmen opdateres med en meddelelse om det lykkedes eller ej
          * */
 
-//        backgroundThread.execute(() ->{
-//          try {
-//              hentOrdFraDr();
-//              uiThread.post(() -> {
-//                  System.out.println("Ord blev hentet fra DRs server");
-//
-//                  wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
-//                  wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
-//
-//                  point = galgelogik.getSynligtOrd().length();
-//                  System.out.println("point: "+point);
-//
-//              });
-//          }catch (Exception e){
-//              e.printStackTrace();
-//          }
-//        });
 
     }
 

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -17,6 +19,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
@@ -29,8 +32,14 @@ public class highscore_frag extends Fragment {
     // sådan ser en preferencemanager ud i et fragment
     //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity())
 
-    TextView scores, prefData;
-    SharedPreferences prefMan;
+     TextView scores;
+     SharedPreferences prefMan;
+//    String names[] = new String[3];
+//    int points[] = new int[3];
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+
 
     //required empty constructor
     public highscore_frag() {
@@ -40,18 +49,19 @@ public class highscore_frag extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View vw = inflater.inflate(R.layout.fragment_highscore_frag, container, false);
 
+
+        ArrayList<RecyclerItem> recyclerList = new ArrayList<>();
+
         //scores = (TextView) vw.findViewById(R.id.highscore_frag);
 
         Context hostAct = getActivity();
 
-        prefData = vw.findViewById(R.id.PrefData);
 
         prefMan = hostAct.getSharedPreferences("GemDataTest", Context.MODE_PRIVATE);
         String spillernavn = prefMan.getString("spillernavn1", "ingen gemt tekst");
@@ -117,15 +127,34 @@ public class highscore_frag extends Fragment {
             //   Log.d("map values: ", entry.getKey() + " : "+ entry.getValue().toString());
 //            System.out.println("map values: " + entry.getKey() + " : " + entry.getValue().toString());
 //            prefData.append(entry.getKey() + " : " + entry.getValue() + "\n");
-            prefData.setTextSize(24);
-            prefData.setTextColor(Color.RED);
 
         }
 
-        prefData.append(highname + " : "+ highest + "\n" + tempname + " : " + temp + "\n" + tempname2 + " : " + temp2);
+//        names[0] = highname;
+//        names[1] = tempname;
+//        names[2] = tempname2;
+//        points[0] = highest;
+//        points[1] = temp;
+//        points[2] = temp2;
+//
+//        System.out.println("names og points arrays"+names[0] + names [1] + names[2 ]+ points[0] + points[1]+points[2]);
 
 
-        System.out.println(highest);
+
+//        recyclerList.add(new RecyclerItem(R.drawable.ic_sun, "navn1",20));
+
+        recyclerList.add(new RecyclerItem(R.drawable.ic_sun, highname,highest));
+        recyclerList.add(new RecyclerItem(R.drawable.ic_halfsun, tempname,temp));
+        recyclerList.add(new RecyclerItem(R.drawable.ic_lastsun, tempname2,temp2));
+
+
+        recyclerView = vw.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(hostAct);
+        adapter = new RecyclerAdapter(recyclerList);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
         return vw;
     }
 

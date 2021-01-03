@@ -49,7 +49,6 @@ public class Level extends AppCompatActivity implements View.OnClickListener {
 
         hentOrd.galgelogik.logStatus();
 
-        String items[] = new String[]{"Pis", "prut", "lort"};
 
         //System.out.println("ordene: "+ hentOrd.galgelogik.muligeOrd);
 
