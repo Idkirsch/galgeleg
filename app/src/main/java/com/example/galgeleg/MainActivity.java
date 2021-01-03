@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(v == playGame){
             String n = name.getText().toString();
             System.out.println(n);
-            Intent intent = new Intent(this, Spil.class);
+            Intent intent = new Intent(this, Level.class);
             intent.putExtra("spillerNavn", n);
             if(n.length() > 0){
                 this.startActivity(intent);
