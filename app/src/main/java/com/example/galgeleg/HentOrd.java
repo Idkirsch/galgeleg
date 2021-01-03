@@ -55,7 +55,7 @@ public class HentOrd {
         galgelogik.muligeOrd.addAll(new HashSet<String>(Arrays.asList(data.split(" "))));
 
         System.out.println("muligeOrd = " + galgelogik.muligeOrd);
-        galgelogik.startNytSpil();
+//        galgelogik.startNytSpil();
     }
 
 

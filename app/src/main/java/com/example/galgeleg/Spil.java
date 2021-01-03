@@ -18,12 +18,12 @@ import java.util.concurrent.Executors;
 
 public class Spil extends AppCompatActivity implements View.OnClickListener {
 
-    //Galgelogik galgelogik = new Galgelogik();
-    HentOrd hentOrd = new HentOrd();
+    Galgelogik galgelogik = new Galgelogik();
+    //HentOrd hentOrd = new HentOrd();
     TextView tekst, navneView, wordToGuess;
     EditText input;
     Button GuessLetter;
-    String spillerNavn;
+    String spillerNavn, ordet;
     int point;
     int antalGaet = 0;
 
@@ -31,8 +31,8 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
   /**
    * Instantierer en baggrundstråd og en maintråd (ui)
    * */
-    Executor backgroundThread = Executors.newSingleThreadExecutor();
-    Handler uiThread = new Handler(Looper.getMainLooper());
+//    Executor backgroundThread = Executors.newSingleThreadExecutor();
+//    Handler uiThread = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,24 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         //spillerNavn bliver sendt videre vha intents indbyggede funktionalitet
         Intent i = getIntent();
         spillerNavn = i.getStringExtra("spillerNavn");
+        ordet = i.getStringExtra("valgtOrd");
         System.out.println(spillerNavn);
+        System.out.println(ordet);
+
+        galgelogik.logStatus();
+
+
+        galgelogik.muligeOrd.clear();
+        galgelogik.muligeOrd.add(ordet);
+
+
+        System.out.println("skal være hejsa: "+ galgelogik.muligeOrd);
+
+        galgelogik.setOrdet(ordet);
+        galgelogik.startNytSpil();
+        galgelogik.logStatus();
+
+
 
 
         navneView = findViewById(R.id.nameView);
@@ -66,28 +83,31 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         input.setOnClickListener(this);
 
 
+        wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
+        wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+
         /**
          * Der oprettes en baggrundstråd som henter nogle ord fra DR
          * Teksten på skærmen opdateres med en meddelelse om det lykkedes eller ej
          * */
 
-        backgroundThread.execute(() ->{
-          try {
-              hentOrd.hentOrdFraDr();
-              uiThread.post(() -> {
-                  System.out.println("Ord blev hentet fra DRs server");
-
-                  wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
-                  wordToGuess.setText("Du skal gætte ordet " + hentOrd.galgelogik.getSynligtOrd());
-
-                  point = hentOrd.galgelogik.getSynligtOrd().length();
-                  System.out.println("point: "+point);
-
-              });
-          }catch (Exception e){
-              e.printStackTrace();
-          }
-        });
+//        backgroundThread.execute(() ->{
+//          try {
+//              hentOrdFraDr();
+//              uiThread.post(() -> {
+//                  System.out.println("Ord blev hentet fra DRs server");
+//
+//                  wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
+//                  wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+//
+//                  point = galgelogik.getSynligtOrd().length();
+//                  System.out.println("point: "+point);
+//
+//              });
+//          }catch (Exception e){
+//              e.printStackTrace();
+//          }
+//        });
 
     }
 
@@ -99,18 +119,19 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
             antalGaet = antalGaet+1;
             System.out.println("antal gæt : " + antalGaet);
             if (bogstav.length() == 1) {
-                hentOrd.galgelogik.gætBogstav(bogstav);
-                if (hentOrd.galgelogik.erSidsteBogstavKorrekt()) {
+                galgelogik.gætBogstav(bogstav);
+                if (galgelogik.erSidsteBogstavKorrekt()) {
                     navneView.setText("Juhu, du gættede et bogstav korrekt!");
                     didTheyWin();
-                    wordToGuess.setText("Du skal gætte ordet " + hentOrd.galgelogik.getSynligtOrd());
+                   wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+                    System.out.println("gæt ordet: " +galgelogik.getSynligtOrd() + galgelogik.getOrdet());
                 } else {
                     navneView.setText("Æv, det var ikke rigtigt. Prøv igen.\n");
                     didTheyLose();
                 }
-                navneView.append("\nDu har " + hentOrd.galgelogik.getAntalForkerteBogstaver() + " forkerte.\n"
-                        +"og du har gættet på "+ hentOrd.galgelogik.getBrugteBogstaver());
-                System.out.println(hentOrd.galgelogik.getAntalForkerteBogstaver());
+                navneView.append("\nDu har " + galgelogik.getAntalForkerteBogstaver() + " forkerte.\n"
+                        +"og du har gættet på "+ galgelogik.getBrugteBogstaver());
+                System.out.println(galgelogik.getAntalForkerteBogstaver());
             } else {
                 navneView.setText("Du skal gætte på nøjagtig ét bogstav\n"); }
             input.setText("");
@@ -121,7 +142,7 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
 
     private void didTheyWin(){
 
-            if(hentOrd.galgelogik.erSpilletVundet()){
+            if(galgelogik.erSpilletVundet()){
                 navneView.setText("Yes, du vandt!");
 
                 Intent intent = new Intent(this, Vundet.class);
@@ -133,10 +154,10 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void didTheyLose(){
-        if(hentOrd.galgelogik.erSpilletTabt()){
+        if(galgelogik.erSpilletTabt()){
             navneView.setText("Pis, du har tabt");
             Intent intent = new Intent(this, Tabt.class);
-            intent.putExtra("wordToGuess", hentOrd.galgelogik.getOrdet());
+            intent.putExtra("wordToGuess", galgelogik.getOrdet());
             this.startActivity(intent);
         }
     }

@@ -31,7 +31,7 @@ public class Galgelogik {
 //        muligeOrd.add("skovsnegl");
 //        muligeOrd.add("solsort");
 //        muligeOrd.add("tyve");
-        startNytSpil();
+   //     startNytSpil();
     }
 
 
@@ -45,6 +45,10 @@ public class Galgelogik {
 
     public String getOrdet() {
         return ordet;
+    }
+
+    public void setOrdet(String ord){
+        ordet = ord;
     }
 
     public int getAntalForkerteBogstaver() {
