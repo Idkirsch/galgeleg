@@ -42,8 +42,8 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         /**
          *  Sætter teksterne i de tre tekstviews, hhv opdatering på hvor ordene kommer fra, ordet der skal gættes og spillerens navn
          * */
-        tekst = (TextView) findViewById(R.id.textView);
-        tekst.setText("Tab og vind med samme sind ");
+//        tekst = (TextView) findViewById(R.id.textView);
+//        tekst.setText("Tab og vind med samme sind ");
 
 
         //spillerNavn bliver sendt videre vha intents indbyggede funktionalitet
