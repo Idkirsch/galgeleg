@@ -5,19 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Level"
-    android:orientation="vertical">
-
-<!--    <Button-->
-<!--        android:id="@+id/knap_til_spil"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Videre til spillet" />-->
+    android:orientation="vertical"
+    android:background="@color/Yellow">
 
     <ListView
         android:id="@+id/list_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-
-
         />
 </RelativeLayout>
