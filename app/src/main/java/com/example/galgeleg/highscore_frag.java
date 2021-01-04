@@ -82,9 +82,10 @@ public class highscore_frag extends Fragment {
         int highest = 0;
         int temp = 0;
         int temp2 = 0;
-        String tempname = "";
-        String tempname2 = "";
-        String highname = "";
+        String tempname = new String();
+        String tempname2 = new String();
+        String highname = new String();
+        String text = " point";
 
         for(Map.Entry<String,?> entry : map.entrySet()){
 
@@ -143,9 +144,9 @@ public class highscore_frag extends Fragment {
 
 //        recyclerList.add(new RecyclerItem(R.drawable.ic_sun, "navn1",20));
 
-        recyclerList.add(new RecyclerItem(R.drawable.ic_sun, highname,highest));
-        recyclerList.add(new RecyclerItem(R.drawable.ic_halfsun, tempname,temp));
-        recyclerList.add(new RecyclerItem(R.drawable.ic_lastsun, tempname2,temp2));
+        recyclerList.add(new RecyclerItem(R.drawable.ic_sun, highname,highest,text));
+        recyclerList.add(new RecyclerItem(R.drawable.ic_halfsun, tempname,temp,text));
+        recyclerList.add(new RecyclerItem(R.drawable.ic_lastsun, tempname2,temp2,text));
 
 
         recyclerView = vw.findViewById(R.id.recyclerView);

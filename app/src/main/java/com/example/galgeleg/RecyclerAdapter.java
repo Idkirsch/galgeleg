@@ -19,7 +19,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.myView
     public static class myViewHolder extends RecyclerView.ViewHolder{
 
         public ImageView imageView;
-        public TextView name, points;
+        public TextView name, points, text;
 
 
         public myViewHolder(@NonNull View itemView) {
@@ -28,6 +28,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.myView
             this.imageView = itemView.findViewById(R.id.imageview);
             this.name = itemView.findViewById(R.id.textView1);
             this.points = itemView.findViewById(R.id.textView2);
+            this.text = itemView.findViewById(R.id.textView3);
 
         }
     }
@@ -55,6 +56,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.myView
         holder.imageView.setImageResource(currentItem.getImage());
         holder.name.setText(currentItem.getName());
         holder.points.setText(String.valueOf(currentItem.getPoint()));
+        holder.text.setText(currentItem.getText());
     }
 
     @Override
