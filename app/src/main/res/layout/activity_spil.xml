@@ -22,13 +22,6 @@
         android:layout_marginTop="80dp"
         />
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/textview"-->
-<!--        android:textColor="@color/Red"-->
-<!--        android:textSize="25dp"/>-->
 
 
     <TextView
@@ -46,6 +39,15 @@
         android:hint="Tast et bogstav her"
         android:textColor="@color/Pink"
         android:textSize="25sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WAHA"
+        android:id="@+id/animationTekst"
+
+        />
 
     <Button
         android:id="@+id/buttonGuess"

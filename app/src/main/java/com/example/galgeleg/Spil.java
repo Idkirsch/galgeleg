@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -20,7 +23,7 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
 
     Galgelogik galgelogik = new Galgelogik();
     //HentOrd hentOrd = new HentOrd();
-    TextView tekst, navneView, wordToGuess;
+    TextView tekst, navneView, wordToGuess, animateTest;
     EditText input;
     Button GuessLetter;
     String spillerNavn, ordet;
@@ -74,6 +77,10 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         navneView.append(spillerNavn);
 
 
+        animateTest = findViewById(R.id.animationTekst);
+        animateTest.setOnClickListener(this);
+
+
         GuessLetter = new Button(this);
         GuessLetter = (Button) findViewById(R.id.buttonGuess);
         GuessLetter.setOnClickListener(this);
@@ -116,6 +123,13 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
                 navneView.append("\nDu har " + galgelogik.getAntalForkerteBogstaver() + " forkerte.\n"
                         +"og du har gættet på "+ galgelogik.getBrugteBogstaver());
                 System.out.println(galgelogik.getAntalForkerteBogstaver());
+
+                YoYo.with(Techniques.RubberBand)
+                        .duration(700)
+                        .repeat(1)
+                        .playOn(animateTest);
+
+
             } else {
                 navneView.setText("Du skal gætte på nøjagtig ét bogstav\n"); }
             input.setText("");
