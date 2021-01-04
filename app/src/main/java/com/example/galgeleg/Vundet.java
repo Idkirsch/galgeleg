@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 
 public class Vundet extends AppCompatActivity implements View.OnClickListener {
 
-    Button nytspil, gemScore;
+    Button nytspil;
     TextView tillykke;
     SharedPreferences prefMan;
     String spillerNavn;
@@ -40,13 +40,11 @@ public class Vundet extends AppCompatActivity implements View.OnClickListener {
 
 
         tillykke = (TextView) findViewById(R.id.Tillyke);
-        tillykke.append(" "+ spillerNavn + ", du har vundet! med antal gæt : "+antalGaet);
+        tillykke.append(" "+ spillerNavn + ", du har vundet! med "+antalGaet+" gæt og du fik "+point+" point");
 
         nytspil = (Button) findViewById(R.id.NytSpilVundet);
         nytspil.setOnClickListener(this);
 
-        gemScore = (Button) findViewById(R.id.GemHighscore);
-        gemScore.setOnClickListener(this);
 
     }
 
@@ -55,20 +53,15 @@ public class Vundet extends AppCompatActivity implements View.OnClickListener {
         System.out.println("Det blev klikket på spil igen knappen, vinderskærm");
 
         if(view == nytspil){
-           //TODO: Nice hvis spillernavnet følger med intents og så kan man ryge direkte ind i spillet igen med samme navn
-
-            Intent intent = new Intent(this, MainActivity.class);
-            this.startActivity(intent);
-        }
-        if(view == gemScore){
-            System.out.println("der blev trykket på gem highscore knappen");
 
             SharedPreferences.Editor editor = prefMan.edit();
             editor.putString(spillerNavn, String.valueOf(point));
             editor.commit();
 
-            //saveScore();
+            Intent intent = new Intent(this, MainActivity.class);
+            this.startActivity(intent);
         }
+
     }
 
 }
