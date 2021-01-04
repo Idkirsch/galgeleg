@@ -144,9 +144,10 @@ public class highscore_frag extends Fragment {
 
 //        recyclerList.add(new RecyclerItem(R.drawable.ic_sun, "navn1",20));
 
-        recyclerList.add(new RecyclerItem(R.drawable.ic_sun, highname,highest,text));
-        recyclerList.add(new RecyclerItem(R.drawable.ic_halfsun, tempname,temp,text));
-        recyclerList.add(new RecyclerItem(R.drawable.ic_lastsun, tempname2,temp2,text));
+        recyclerList.add(new RecyclerItem(R.drawable.first, highname,highest,text));
+       // recyclerList.add(new RecyclerItem(R.drawable.ic_halfsun, tempname,temp,text));
+        recyclerList.add(new RecyclerItem(R.drawable.second, tempname,temp,text));
+        recyclerList.add(new RecyclerItem(R.drawable.third, tempname2,temp2,text));
 
 
         recyclerView = vw.findViewById(R.id.recyclerView);

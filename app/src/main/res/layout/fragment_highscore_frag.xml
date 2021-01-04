@@ -15,7 +15,11 @@
         android:text="@string/highscore_fragment_text"
         android:layout_marginTop="10dp"
         android:textColor="@color/Red"
-        android:textSize="30dp"/>
+        android:textSize="30dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:layout_marginLeft="50dp"
+
+        />
 
 
 
