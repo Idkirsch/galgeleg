@@ -65,8 +65,6 @@
         android:name="com.example.galgeleg.highscore_frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-
         android:layout_margin="15dp" />
 
 
