@@ -45,14 +45,12 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         /**
          *  Sætter teksterne i de tre tekstviews, hhv opdatering på hvor ordene kommer fra, ordet der skal gættes og spillerens navn
          * */
-//        tekst = (TextView) findViewById(R.id.textView);
-//        tekst.setText("Tab og vind med samme sind ");
 
-
-        //spillerNavn bliver sendt videre vha intents indbyggede funktionalitet
         Intent i = getIntent();
         spillerNavn = i.getStringExtra("spillerNavn");
         ordet = i.getStringExtra("valgtOrd");
+
+
         System.out.println(spillerNavn);
         System.out.println(ordet);
 
@@ -112,22 +110,26 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
             if (bogstav.length() == 1) {
                 galgelogik.gætBogstav(bogstav);
                 if (galgelogik.erSidsteBogstavKorrekt()) {
+                    YoYo.with(Techniques.Flash)
+                            .duration(700)
+                            .repeat(1)
+                            .playOn(wordToGuess);
                     navneView.setText("Juhu, du gættede et bogstav korrekt!");
                     didTheyWin();
                    wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
                     System.out.println("gæt ordet: " +galgelogik.getSynligtOrd() + galgelogik.getOrdet());
                 } else {
+                    YoYo.with(Techniques.Wobble)
+                  //  YoYo.with(Techniques.Flash)
+                            .duration(700)
+                            .repeat(1)
+                            .playOn(wordToGuess);
                     navneView.setText("Æv, det var ikke rigtigt. Prøv igen.\n");
                     didTheyLose();
                 }
                 navneView.append("\nDu har " + galgelogik.getAntalForkerteBogstaver() + " forkerte.\n"
                         +"og du har gættet på "+ galgelogik.getBrugteBogstaver());
                 System.out.println(galgelogik.getAntalForkerteBogstaver());
-
-                YoYo.with(Techniques.RubberBand)
-                        .duration(700)
-                        .repeat(1)
-                        .playOn(animateTest);
 
 
             } else {

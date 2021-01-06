@@ -125,24 +125,9 @@ public class highscore_frag extends Fragment {
             }
 
 
-            //   Log.d("map values: ", entry.getKey() + " : "+ entry.getValue().toString());
-//            System.out.println("map values: " + entry.getKey() + " : " + entry.getValue().toString());
-//            prefData.append(entry.getKey() + " : " + entry.getValue() + "\n");
-
         }
 
-//        names[0] = highname;
-//        names[1] = tempname;
-//        names[2] = tempname2;
-//        points[0] = highest;
-//        points[1] = temp;
-//        points[2] = temp2;
-//
-//        System.out.println("names og points arrays"+names[0] + names [1] + names[2 ]+ points[0] + points[1]+points[2]);
 
-
-
-//        recyclerList.add(new RecyclerItem(R.drawable.ic_sun, "navn1",20));
 
         recyclerList.add(new RecyclerItem(R.drawable.first, highname,highest,text));
        // recyclerList.add(new RecyclerItem(R.drawable.ic_halfsun, tempname,temp,text));

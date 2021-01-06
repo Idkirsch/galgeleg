@@ -50,14 +50,12 @@ public class Level extends AppCompatActivity {
 
 
                     ArrayList<String> listen2 = hentOrd.galgelogik.muligeOrd;
-//                    ArrayList<String> listen2 = hentOrd.galgelogik.muligeOrd;
-                    //System.out.println("listen2 " + listen2);
-                    
+
+
                     ArrayList<String> listenTrim = new ArrayList<>();
                     ArrayList<String> listenStars = new ArrayList<>();
 
                     for (String word : listen2) {
-
 
                        // System.out.println(word + " ");
                         if (word.length() > 4) {
@@ -67,13 +65,8 @@ public class Level extends AppCompatActivity {
                             for(int i = 0; i < word.length();i++){
                                 wordstar = wordstar+"*";
                             }
-                         //   System.out.println(wordstar);
-
-
                             listenTrim.add(word);
                             listenStars.add(wordstar);
-
-                            
                         }
                     }
 
@@ -86,7 +79,7 @@ public class Level extends AppCompatActivity {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             System.out.println("der blev klikket på: " + listenTrim.get(i));
-                           // ordet = hentOrd.galgelogik.muligeOrd.get(i);
+
                             ordet = listenTrim.get(i);
                             Intent intent = new Intent(Level.this, Spil.class);
                             intent.putExtra("spillerNavn", spillerNavn);
