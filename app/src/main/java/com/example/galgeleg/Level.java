@@ -37,7 +37,6 @@ public class Level extends AppCompatActivity {
         Intent i = getIntent();
         spillerNavn = i.getStringExtra("spillerNavn");
         hentFraDR();
-       // hentOrd.galgelogik.logStatus();
 
     }
 
@@ -47,20 +46,16 @@ public class Level extends AppCompatActivity {
                 hentOrd.hentOrdFraDr();
                 uiThread.post(() -> {
                     System.out.println("Ord blev hentet fra DRs server");
-
-
                     ArrayList<String> listen2 = hentOrd.galgelogik.muligeOrd;
-
-
                     ArrayList<String> listenTrim = new ArrayList<>();
                     ArrayList<String> listenStars = new ArrayList<>();
 
-                    for (String word : listen2) {
 
-                       // System.out.println(word + " ");
+                    /**
+                     * Trimmer ordlisten så de korteste sorteres væk og gemmer ordene i en ny liste hvor de er repræsenteret som stjerner
+                     * */
+                    for (String word : listen2) {
                         if (word.length() > 4) {
-                            // listen2.remove(word);
-                         //   System.out.println(word + " : ");
                             String wordstar = new String();
                             for(int i = 0; i < word.length();i++){
                                 wordstar = wordstar+"*";

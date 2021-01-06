@@ -22,8 +22,7 @@ import java.util.concurrent.Executors;
 public class Spil extends AppCompatActivity implements View.OnClickListener {
 
     Galgelogik galgelogik = new Galgelogik();
-    //HentOrd hentOrd = new HentOrd();
-    TextView tekst, navneView, wordToGuess, animateTest;
+    TextView tekst, navneView, wordToGuess;
     EditText input;
     Button GuessLetter;
     String spillerNavn, ordet;
@@ -71,13 +70,8 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
 
 
         navneView = findViewById(R.id.nameView);
-        navneView.setText("Hej og velkommen til ");
+        navneView.setText("Hej ");
         navneView.append(spillerNavn);
-
-
-        animateTest = findViewById(R.id.animationTekst);
-        animateTest.setOnClickListener(this);
-
 
         GuessLetter = new Button(this);
         GuessLetter = (Button) findViewById(R.id.buttonGuess);
@@ -89,7 +83,7 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
 
 
         wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
-        wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+        wordToGuess.setText("Gæt ordet " + galgelogik.getSynligtOrd());
         point = galgelogik.getOrdet().length();
 
         /**

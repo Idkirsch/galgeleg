@@ -24,12 +24,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.myView
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
-
             this.imageView = itemView.findViewById(R.id.imageview);
             this.name = itemView.findViewById(R.id.textView1);
             this.points = itemView.findViewById(R.id.textView2);
             this.text = itemView.findViewById(R.id.textView3);
-
         }
     }
 
@@ -37,8 +35,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.myView
     public RecyclerAdapter(ArrayList<RecyclerItem> recyclerItemArrayList) {
         this.recyclerItemArrayList = recyclerItemArrayList;
     }
-
-
 
 
     @NonNull

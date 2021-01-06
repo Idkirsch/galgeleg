@@ -12,16 +12,6 @@
 
 
 
-    <TextView
-        android:id="@+id/wordToBeGuessed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vent, jeg finder ordet!"
-        android:textSize="25dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_marginTop="80dp"
-        />
-
 
 
     <TextView
@@ -29,8 +19,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hej_navn"
+        android:layout_marginTop="30dp"
         android:textSize="25dp"
         android:textColor="@color/Black"/>
+    <TextView
+        android:id="@+id/wordToBeGuessed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vent, jeg finder ordet!"
+        android:textSize="25dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginTop="10dp"
+        />
+
+
 
     <EditText
         android:id="@+id/input"

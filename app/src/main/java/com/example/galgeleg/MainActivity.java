@@ -13,19 +13,17 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button playGame, highscore;
+    Button playGame;
     TextView name;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         playGame = findViewById(R.id.startSpil);
         playGame.setOnClickListener(this);
-
         name = findViewById(R.id.name);
-
         loadFragment(new highscore_frag());
 
     }
@@ -38,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View v){
         if(v == playGame){
+
             String n = name.getText().toString();
             System.out.println(n);
             Intent intent = new Intent(this, Level.class);
@@ -47,11 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }else{
                 name.setHint("Husk at skrive et navn");
             }
-//
-//        }else if(v == highscore){
-//
-//
-//            System.out.println("Der blev trykket på highscore");
         }else if(v == name){
             System.out.println("trykkede på navnefelt");
         }

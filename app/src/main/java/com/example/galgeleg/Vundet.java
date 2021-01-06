@@ -26,9 +26,8 @@ public class Vundet extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vundet);
-
-       // prefMan = PreferenceManager.getDefaultSharedPreferences(this);
         prefMan = this.getSharedPreferences("GemDataTest", Context.MODE_PRIVATE);
+
 
         String spillernavn = prefMan.getString("spillernavn1", "ingen gemt tekst");
         System.out.println("spillernavn1: "+ spillernavn);
@@ -53,7 +52,6 @@ public class Vundet extends AppCompatActivity implements View.OnClickListener {
         System.out.println("Det blev klikket på spil igen knappen, vinderskærm");
 
         if(view == nytspil){
-
             SharedPreferences.Editor editor = prefMan.edit();
             editor.putString(spillerNavn, String.valueOf(point));
             editor.commit();
