@@ -123,8 +123,6 @@ public class Galgelogik {
     }
 
 
-
-
     public static void main(String[] args) throws Exception {
        // new Galgelogik().hentOrdFraRegneark("2");
     }

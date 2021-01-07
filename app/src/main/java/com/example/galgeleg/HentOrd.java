@@ -9,10 +9,7 @@ import java.util.HashSet;
 
 //import static com.example.galgeleg.Galgelogik.hentUrl;
 
-
-
 public class HentOrd {
-
 
     Galgelogik galgelogik = new Galgelogik();
 

@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +20,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class Spil extends AppCompatActivity implements View.OnClickListener {
+public class Spil extends AppCompatActivity implements View.OnKeyListener {
 
     Galgelogik galgelogik = new Galgelogik();
     TextView tekst, navneView, wordToGuess;
@@ -30,12 +31,11 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
     int antalGaet = 0;
 
 
-  /**
-   * Instantierer en baggrundstråd og en maintråd (ui)
-   * */
+    /**
+     * Instantierer en baggrundstråd og en maintråd (ui)
+     */
 //    Executor backgroundThread = Executors.newSingleThreadExecutor();
 //    Handler uiThread = new Handler(Looper.getMainLooper());
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,26 +60,25 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         galgelogik.muligeOrd.add(ordet);
 
 
-        System.out.println("skal være hejsa: "+ galgelogik.muligeOrd);
+        System.out.println("skal være hejsa: " + galgelogik.muligeOrd);
 
         galgelogik.setOrdet(ordet);
         galgelogik.startNytSpil();
         galgelogik.logStatus();
 
 
-
-
         navneView = findViewById(R.id.nameView);
         navneView.setText("Hej ");
         navneView.append(spillerNavn);
 
-        GuessLetter = new Button(this);
-        GuessLetter = (Button) findViewById(R.id.buttonGuess);
-        GuessLetter.setOnClickListener(this);
+//        GuessLetter = new Button(this);
+//        GuessLetter = (Button) findViewById(R.id.buttonGuess);
+        //GuessLetter.setOnClickListener(this);
 
         input = new EditText(this);
-        input = findViewById(R.id.input);
-        input.setOnClickListener(this);
+        input = findViewById(R.id.guessLetter);
+        // input.setOnClickListener(this);
+        input.setOnKeyListener(this);
 
 
         wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
@@ -93,62 +92,62 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
 
 
     }
+//
+//    @Override
+//    public void onClick(View v) {
+//        if (v == GuessLetter) {
+//            String bogstav = input.getText().toString();
+//            System.out.println("Trykkede på knap: gæt bogstav");
+//            antalGaet = antalGaet+1;
+//            System.out.println("antal gæt : " + antalGaet);
+//            if (bogstav.length() == 1) {
+//                galgelogik.gætBogstav(bogstav);
+//                if (galgelogik.erSidsteBogstavKorrekt()) {
+//                    YoYo.with(Techniques.Flash)
+//                            .duration(700)
+//                            .repeat(1)
+//                            .playOn(wordToGuess);
+//                    navneView.setText("Juhu, du gættede et bogstav korrekt!");
+//                    didTheyWin();
+//                   wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+//                    System.out.println("gæt ordet: " +galgelogik.getSynligtOrd() + galgelogik.getOrdet());
+//                } else {
+//                    YoYo.with(Techniques.Wobble)
+//                  //  YoYo.with(Techniques.Flash)
+//                            .duration(700)
+//                            .repeat(1)
+//                            .playOn(wordToGuess);
+//                    navneView.setText("Æv, det var ikke rigtigt. Prøv igen.\n");
+//                    didTheyLose();
+//                }
+//                navneView.append("\nDu har " + galgelogik.getAntalForkerteBogstaver() + " forkerte.\n"
+//                        +"og du har gættet på "+ galgelogik.getBrugteBogstaver());
+//                System.out.println(galgelogik.getAntalForkerteBogstaver());
+//
+//
+//            } else {
+//                navneView.setText("Du skal gætte på nøjagtig ét bogstav\n"); }
+//            input.setText("");
+//        }else if (v == input){
+//            System.out.println("klikkede på inputfelt");
+//        }
+//    }
 
-    @Override
-    public void onClick(View v) {
-        if (v == GuessLetter) {
-            String bogstav = input.getText().toString();
-            System.out.println("Trykkede på knap: gæt bogstav");
-            antalGaet = antalGaet+1;
-            System.out.println("antal gæt : " + antalGaet);
-            if (bogstav.length() == 1) {
-                galgelogik.gætBogstav(bogstav);
-                if (galgelogik.erSidsteBogstavKorrekt()) {
-                    YoYo.with(Techniques.Flash)
-                            .duration(700)
-                            .repeat(1)
-                            .playOn(wordToGuess);
-                    navneView.setText("Juhu, du gættede et bogstav korrekt!");
-                    didTheyWin();
-                   wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
-                    System.out.println("gæt ordet: " +galgelogik.getSynligtOrd() + galgelogik.getOrdet());
-                } else {
-                    YoYo.with(Techniques.Wobble)
-                  //  YoYo.with(Techniques.Flash)
-                            .duration(700)
-                            .repeat(1)
-                            .playOn(wordToGuess);
-                    navneView.setText("Æv, det var ikke rigtigt. Prøv igen.\n");
-                    didTheyLose();
-                }
-                navneView.append("\nDu har " + galgelogik.getAntalForkerteBogstaver() + " forkerte.\n"
-                        +"og du har gættet på "+ galgelogik.getBrugteBogstaver());
-                System.out.println(galgelogik.getAntalForkerteBogstaver());
+    private void didTheyWin() {
 
+        if (galgelogik.erSpilletVundet()) {
+            navneView.setText("Yes, du vandt!");
 
-            } else {
-                navneView.setText("Du skal gætte på nøjagtig ét bogstav\n"); }
-            input.setText("");
-        }else if (v == input){
-            System.out.println("klikkede på inputfelt");
+            Intent intent = new Intent(this, Vundet.class);
+            intent.putExtra("spillerNavn", spillerNavn);
+            intent.putExtra("point", point);
+            intent.putExtra("antalGaet", antalGaet);
+            this.startActivity(intent);
         }
     }
 
-    private void didTheyWin(){
-
-            if(galgelogik.erSpilletVundet()){
-                navneView.setText("Yes, du vandt!");
-
-                Intent intent = new Intent(this, Vundet.class);
-                intent.putExtra("spillerNavn", spillerNavn);
-                intent.putExtra("point", point);
-                intent.putExtra("antalGaet", antalGaet);
-                this.startActivity(intent);
-            }
-    }
-
-    private void didTheyLose(){
-        if(galgelogik.erSpilletTabt()){
+    private void didTheyLose() {
+        if (galgelogik.erSpilletTabt()) {
             navneView.setText("Pis, du har tabt");
             Intent intent = new Intent(this, Tabt.class);
             intent.putExtra("wordToGuess", galgelogik.getOrdet());
@@ -156,4 +155,39 @@ public class Spil extends AppCompatActivity implements View.OnClickListener {
         }
     }
 
+    @Override
+    public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+        if (keyCode == 66 && KeyEvent.ACTION_DOWN == keyEvent.getAction()) {
+            System.out.println("trykkede på enter");
+            String bogstav = input.getText().toString();
+            System.out.println(bogstav);
+            antalGaet = antalGaet + 1;
+            galgelogik.gætBogstav(bogstav);
+            if (galgelogik.erSidsteBogstavKorrekt()) {
+
+                YoYo.with(Techniques.Flash)
+                        .duration(700)
+                        .repeat(1)
+                        .playOn(wordToGuess);
+                navneView.setText("Juhu, du gættede et bogstav korrekt!");
+                didTheyWin();
+                wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+                System.out.println("gæt ordet: " + galgelogik.getSynligtOrd() + galgelogik.getOrdet());
+            } else {
+                YoYo.with(Techniques.Wobble)
+                        //  YoYo.with(Techniques.Flash)
+                        .duration(700)
+                        .repeat(1)
+                        .playOn(wordToGuess);
+                navneView.setText("Æv, det var ikke rigtigt. Prøv igen.\n");
+                didTheyLose();
+            }
+            navneView.append("\nDu har " + galgelogik.getAntalForkerteBogstaver() + " forkerte.\n"
+                    + "og du har gættet på " + galgelogik.getBrugteBogstaver());
+            System.out.println(galgelogik.getAntalForkerteBogstaver());
+
+
+        }
+        return false;
+    }
 }

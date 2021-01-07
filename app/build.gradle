@@ -1,16 +1,12 @@
 apply plugin: 'com.android.application'
 
-
-
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
-
     compileOptions{
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     defaultConfig {
         applicationId "com.example.galgeleg"
         minSdkVersion 16
@@ -19,8 +15,6 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
-
     buildTypes {
         release {
             minifyEnabled false
@@ -36,16 +30,11 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-
     implementation 'com.daimajia.easing:library:2.0@aar'
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
-
-
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation "com.airbnb.android:lottie:3.4.4"
     implementation "androidx.cardview:cardview:1.0.0"
-
 }

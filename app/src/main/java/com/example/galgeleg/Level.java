@@ -23,7 +23,9 @@ public class Level extends AppCompatActivity {
     Button videre;
     ListView listen;
     String spillerNavn;
+
     HentOrd hentOrd = new HentOrd();
+
     String ordet;
 
     Executor backgroundThread = Executors.newSingleThreadExecutor();
@@ -46,10 +48,11 @@ public class Level extends AppCompatActivity {
                 hentOrd.hentOrdFraDr();
                 uiThread.post(() -> {
                     System.out.println("Ord blev hentet fra DRs server");
+
                     ArrayList<String> listen2 = hentOrd.galgelogik.muligeOrd;
+
                     ArrayList<String> listenTrim = new ArrayList<>();
                     ArrayList<String> listenStars = new ArrayList<>();
-
 
                     /**
                      * Trimmer ordlisten så de korteste sorteres væk og gemmer ordene i en ny liste hvor de er repræsenteret som stjerner
@@ -64,8 +67,6 @@ public class Level extends AppCompatActivity {
                             listenStars.add(wordstar);
                         }
                     }
-
-
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listenStars);
 
                     listen = (ListView) findViewById(R.id.list_view);

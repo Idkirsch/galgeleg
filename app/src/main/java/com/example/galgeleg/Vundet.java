@@ -47,7 +47,6 @@ public class Vundet extends AppCompatActivity implements View.OnClickListener {
         nytspil = (Button) findViewById(R.id.NytSpilVundet);
         nytspil.setOnClickListener(this);
 
-
     }
 
     @Override

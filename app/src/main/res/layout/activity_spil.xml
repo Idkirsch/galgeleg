@@ -32,22 +32,25 @@
         android:layout_marginTop="10dp"
         />
 
-
-
     <EditText
-        android:id="@+id/input"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:hint="Tast et bogstav her"
-        android:textColor="@color/Pink"
-        android:textSize="25sp" />
+        android:hint="tast bogstav"
+        android:textColorHint="@color/Red"
+        android:id="@+id/guessLetter"
+        android:maxLength="1"
+        android:background="@color/Yellow"
+        android:maxLines="1"
+
+        />
 
 
-    <Button
-        android:id="@+id/buttonGuess"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gæt på bogstav" />
+
+<!--    <Button-->
+<!--        android:id="@+id/buttonGuess"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Gæt på bogstav" />-->
 
 
 </LinearLayout>
