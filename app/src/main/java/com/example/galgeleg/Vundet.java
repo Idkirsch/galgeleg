@@ -18,7 +18,9 @@ public class Vundet extends AppCompatActivity implements View.OnClickListener {
 
     Button nytspil;
     TextView tillykke;
+
     SharedPreferences prefMan;
+
     String spillerNavn;
     int point, antalGaet;
 
@@ -26,6 +28,7 @@ public class Vundet extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vundet);
+
         prefMan = this.getSharedPreferences("GemDataTest", Context.MODE_PRIVATE);
 
 
