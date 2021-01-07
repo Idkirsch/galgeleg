@@ -33,9 +33,9 @@
         />
 
     <EditText
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="tast bogstav"
+        android:hint=""
         android:textColorHint="@color/Red"
         android:id="@+id/guessLetter"
         android:maxLength="1"

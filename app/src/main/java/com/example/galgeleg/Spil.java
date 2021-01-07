@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class Spil extends AppCompatActivity implements View.OnKeyListener {
     String spillerNavn, ordet;
     int point;
     int antalGaet = 0;
+    int antalForkerteGaet = 0;
 
 
     /**
@@ -45,15 +47,12 @@ public class Spil extends AppCompatActivity implements View.OnKeyListener {
          *  Sætter teksterne i de tre tekstviews, hhv opdatering på hvor ordene kommer fra, ordet der skal gættes og spillerens navn
          * */
 
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+
         Intent i = getIntent();
         spillerNavn = i.getStringExtra("spillerNavn");
         ordet = i.getStringExtra("valgtOrd");
-
-
-        System.out.println(spillerNavn);
-        System.out.println(ordet);
-
-        galgelogik.logStatus();
 
 
         galgelogik.muligeOrd.clear();
@@ -71,67 +70,185 @@ public class Spil extends AppCompatActivity implements View.OnKeyListener {
         navneView.setText("Hej ");
         navneView.append(spillerNavn);
 
-//        GuessLetter = new Button(this);
-//        GuessLetter = (Button) findViewById(R.id.buttonGuess);
-        //GuessLetter.setOnClickListener(this);
-
         input = new EditText(this);
         input = findViewById(R.id.guessLetter);
-        // input.setOnClickListener(this);
-        input.setOnKeyListener(this);
 
 
         wordToGuess = (TextView) findViewById(R.id.wordToBeGuessed);
         wordToGuess.setText("Gæt ordet " + galgelogik.getSynligtOrd());
         point = galgelogik.getOrdet().length();
 
-        /**
-         * Der oprettes en baggrundstråd som henter nogle ord fra DR
-         * Teksten på skærmen opdateres med en meddelelse om det lykkedes eller ej
-         * */
-
 
     }
-//
-//    @Override
-//    public void onClick(View v) {
-//        if (v == GuessLetter) {
-//            String bogstav = input.getText().toString();
-//            System.out.println("Trykkede på knap: gæt bogstav");
-//            antalGaet = antalGaet+1;
-//            System.out.println("antal gæt : " + antalGaet);
-//            if (bogstav.length() == 1) {
-//                galgelogik.gætBogstav(bogstav);
-//                if (galgelogik.erSidsteBogstavKorrekt()) {
-//                    YoYo.with(Techniques.Flash)
-//                            .duration(700)
-//                            .repeat(1)
-//                            .playOn(wordToGuess);
-//                    navneView.setText("Juhu, du gættede et bogstav korrekt!");
-//                    didTheyWin();
-//                   wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
-//                    System.out.println("gæt ordet: " +galgelogik.getSynligtOrd() + galgelogik.getOrdet());
-//                } else {
-//                    YoYo.with(Techniques.Wobble)
-//                  //  YoYo.with(Techniques.Flash)
-//                            .duration(700)
-//                            .repeat(1)
-//                            .playOn(wordToGuess);
-//                    navneView.setText("Æv, det var ikke rigtigt. Prøv igen.\n");
-//                    didTheyLose();
-//                }
-//                navneView.append("\nDu har " + galgelogik.getAntalForkerteBogstaver() + " forkerte.\n"
-//                        +"og du har gættet på "+ galgelogik.getBrugteBogstaver());
-//                System.out.println(galgelogik.getAntalForkerteBogstaver());
-//
-//
-//            } else {
-//                navneView.setText("Du skal gætte på nøjagtig ét bogstav\n"); }
-//            input.setText("");
-//        }else if (v == input){
-//            System.out.println("klikkede på inputfelt");
-//        }
-//    }
+
+
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_A:
+                System.out.println("trykkede på a");
+                galgelogik.gætBogstav("a");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_B:
+                System.out.println("trykkede på B");
+                galgelogik.gætBogstav("b");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_C:
+                System.out.println("trykkede på C");
+                galgelogik.gætBogstav("c");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_D:
+                System.out.println("trykkede på D");
+                galgelogik.gætBogstav("d");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_E:
+                System.out.println("trykkede på E");
+                galgelogik.gætBogstav("e");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_F:
+                System.out.println("trykkede på F");
+                galgelogik.gætBogstav("f");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_G:
+                System.out.println("trykkede på G");
+                galgelogik.gætBogstav("g");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_H:
+                System.out.println("trykkede på H");
+                galgelogik.gætBogstav("h");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_I:
+                System.out.println("trykkede på I");
+                galgelogik.gætBogstav("i");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_J:
+                System.out.println("trykkede på J");
+                galgelogik.gætBogstav("j");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_K:
+                System.out.println("trykkede på K");
+                galgelogik.gætBogstav("k");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_L:
+                System.out.println("trykkede på L");
+                galgelogik.gætBogstav("l");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_M:
+                System.out.println("trykkede på M");
+                galgelogik.gætBogstav("m");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_N:
+                System.out.println("trykkede på N");
+                galgelogik.gætBogstav("n");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_O:
+                System.out.println("trykkede på O");
+                galgelogik.gætBogstav("o");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_P:
+                System.out.println("trykkede på P");
+                galgelogik.gætBogstav("p");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_Q:
+                System.out.println("trykkede på Q");
+                galgelogik.gætBogstav("q");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_R:
+                System.out.println("trykkede på R");
+                galgelogik.gætBogstav("r");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_S:
+                System.out.println("trykkede på S");
+                galgelogik.gætBogstav("s");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_T:
+                System.out.println("trykkede på T");
+                galgelogik.gætBogstav("t");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_U:
+                System.out.println("trykkede på U");
+                galgelogik.gætBogstav("u");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_V:
+                System.out.println("trykkede på V");
+                galgelogik.gætBogstav("v");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_W:
+                System.out.println("trykkede på W");
+                galgelogik.gætBogstav("w");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_X:
+                System.out.println("trykkede på X");
+                galgelogik.gætBogstav("x");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_Y:
+                System.out.println("trykkede på Y");
+                galgelogik.gætBogstav("y");
+                updateView();
+
+                return true;
+            case KeyEvent.KEYCODE_Z:
+                System.out.println("trykkede på Z");
+                galgelogik.gætBogstav("z");
+                updateView();
+
+                return true;
+            default:
+                return super.onKeyUp(keyCode, event);
+        }
+    }
+
+
+
 
     private void didTheyWin() {
 
@@ -157,12 +274,16 @@ public class Spil extends AppCompatActivity implements View.OnKeyListener {
 
     @Override
     public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+//        input.getText().clear();
         if (keyCode == 66 && KeyEvent.ACTION_DOWN == keyEvent.getAction()) {
+//             input.setText("");
+
             System.out.println("trykkede på enter");
             String bogstav = input.getText().toString();
             System.out.println(bogstav);
             antalGaet = antalGaet + 1;
             galgelogik.gætBogstav(bogstav);
+
             if (galgelogik.erSidsteBogstavKorrekt()) {
 
                 YoYo.with(Techniques.Flash)
@@ -173,6 +294,8 @@ public class Spil extends AppCompatActivity implements View.OnKeyListener {
                 didTheyWin();
                 wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
                 System.out.println("gæt ordet: " + galgelogik.getSynligtOrd() + galgelogik.getOrdet());
+
+
             } else {
                 YoYo.with(Techniques.Wobble)
                         //  YoYo.with(Techniques.Flash)
@@ -190,4 +313,41 @@ public class Spil extends AppCompatActivity implements View.OnKeyListener {
         }
         return false;
     }
+
+    public void updateView(){
+        antalGaet = antalGaet + 1;
+        if (galgelogik.erSidsteBogstavKorrekt()) {
+
+            YoYo.with(Techniques.Flash)
+                    .duration(700)
+                    .repeat(1)
+                    .playOn(wordToGuess);
+            navneView.setText("Juhu, du gættede et bogstav korrekt!");
+            didTheyWin();
+            wordToGuess.setText("Du skal gætte ordet " + galgelogik.getSynligtOrd());
+            System.out.println("gæt ordet: " + galgelogik.getSynligtOrd() + galgelogik.getOrdet());
+
+
+        } else {
+            YoYo.with(Techniques.Wobble)
+                    //  YoYo.with(Techniques.Flash)
+                    .duration(700)
+                    .repeat(1)
+                    .playOn(wordToGuess);
+            navneView.setText("Æv, det var ikke rigtigt. Prøv igen.\n");
+            antalForkerteGaet++;
+            wrongGuess();
+            didTheyLose();
+        }
+        navneView.append("\nDu har " + galgelogik.getAntalForkerteBogstaver() + " forkerte.\n"
+                + "og du har gættet på " + galgelogik.getBrugteBogstaver());
+        System.out.println(galgelogik.getAntalForkerteBogstaver());
+
+    }
+
+
+    public void wrongGuess(){
+
+    }
+
 }

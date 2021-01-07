@@ -58,7 +58,7 @@ public class Level extends AppCompatActivity {
                      * Trimmer ordlisten så de korteste sorteres væk og gemmer ordene i en ny liste hvor de er repræsenteret som stjerner
                      * */
                     for (String word : listen2) {
-                        if (word.length() > 4) {
+                        if (word.length() > 3 && !(word.contains("æ")) && !(word.contains("ø")) && !(word.contains("å"))) {
                             String wordstar = new String();
                             for(int i = 0; i < word.length();i++){
                                 wordstar = wordstar+"*";
